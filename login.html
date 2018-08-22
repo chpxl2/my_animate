@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <title>态势感知</title>
+    <base href="./">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, minimum-scale=1">
+    <script src="js/jquery.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="css/demo.css">
+    <link rel="stylesheet" href="css/style.css">
+	<style>
+		
+	</style>
+
+    <script>
+
+        $(function(){
+
+            function calculateCircle(){
+                var windowWidth = $(window).width();
+                var windowHeight = $(window).height();
+                var circleObj = $('.dynamic-circle-container');
+                var w = windowWidth*0.45;
+                var h = windowHeight*0.6;
+                if(w>h){
+                  circleObj.width(h);
+                  circleObj.height(h);
+                  circleObj.css({'left':($(window).width()-h)/2});
+                  circleObj.css({'top':($(window).height()-h)/2});
+                }
+                else if(h>w){
+                  circleObj.height(w);
+                  circleObj.width(w);
+                  circleObj.css({'top':($(window).height()-w)/2});
+                  circleObj.css({'left':($(window).width()-w)/2});
+                }
+            }
+
+            function showLoginContent(){
+                $('.login-content').fadeIn();
+            }
+            calculateCircle();
+            $(window).resize(function() {
+               calculateCircle();
+            });
+
+            $('.dynamic-earth,.login-pre').click(function(){
+                var windowHeight = $(window).height();
+                var circleObj = $('.dynamic-circle-container');
+                var obj = $('.dynamic-circle');
+                var topValue = windowHeight-obj.height()/2-circleObj.offset().top;
+                obj.animate({top:topValue},600,'swing',showLoginContent);
+                $('.name-link').css('display','none');
+                $('.name-en').addClass('name-en-scale');
+                $('.name-zh').addClass('name-zh-scale');
+            })
+
+            $('.form-control').focus(function(){
+                var $this = $(this);
+                if(!$this.val()){
+                    $this.addClass('focusClass');
+                }
+            });
+
+            $('.form-control').blur(function(){
+                var $this = $(this);
+                if(!$this.val()){
+                    $this.removeClass('focusClass');
+                }
+            })
+		
+   })
+    </script>
+
+</head>
+<body>
+
+<div class="login-main">
+    <div class="dynamic-cloud1"></div>
+    <div class="dynamic-cloud2"></div>
+    <div class="dynamic-circle-container">
+        <div class="dynamic-circle">
+            <div class="circle1">
+                <div class="line-rotating">
+                    <div class="line line1" ></div>
+                    <div class="line line2"></div>
+                    <div class="line line3"></div>
+                    <div class="line line4"></div>
+                    <div class="line line5"></div>
+                    <div class="line line6"></div>
+                    <div class="line line7"></div>
+                    <div class="line line8"></div>
+                    <div class="line line9"></div>
+                    <div class="line line11"></div>
+                    <div class="line line12"></div>
+                    <div class="line line13"></div>
+                    <div class="line line14"></div>
+                    <div class="line line15"></div>
+                    <div class="line line16"></div>
+                    <div class="line line17"></div>
+                </div>
+
+
+            </div>
+            <div class="dynamic-earth"></div>
+        </div>                          
+        <div class="login-pre">
+            <div class="name-en">SYTTTHERAT STUATION AWAWWNESS PLATFORM</div>
+            <div class="name-zh">管理数据登录平台</div>
+            <div class="name-link">点击地球登录</div>
+        </div>
+        <div  class="login-content">
+            <p class="form-group">
+                <input type="text"  class="form-control" name="username" id="username" autocomplete="off">
+                <label class="form-label">用户名</label>
+            </p>
+            <p class="form-group">
+                <input type="password"  class="form-control" autocomplete="off">
+                <label class="form-label"  id="userpassword">密 码</label>
+            </p>
+            <p class="login-btn">登录</p>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
